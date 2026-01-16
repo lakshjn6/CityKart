@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-External_apps=[ 'category' , 'accounts', 'store']
+External_apps=[ 'category' , 'accounts', 'store', 'carts']
 INSTALLED_APPS += External_apps
 
 MIDDLEWARE = [
@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'category.context_processor.menu_links',
+                'carts.context_processors.counter',
             ],
         },
     },

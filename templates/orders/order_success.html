@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="section-content padding-y">
+<div class="container text-center">
+
+    <h2 class="text-success">✅ Payment Successful</h2>
+    <hr>
+
+    <p><strong>Order Number:</strong> {{ order.order_number }}</p>
+    <p><strong>Name:</strong> {{ order.full_name }}</p>
+    <p><strong>Email:</strong> {{ order.email }}</p>
+    <p><strong>Total Paid:</strong> ₹ {{ order.order_total }}</p>
+
+    <a href="{% url 'store' %}" class="btn btn-primary mt-3">
+        Continue Shopping
+    </a>
+
+</div>
+</section>
+{% endblock %}

@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-External_apps=[ 'category' , 'accounts', 'store', 'carts']
+External_apps=[ 'category' , 'accounts', 'store', 'carts' , 'orders']
 INSTALLED_APPS += External_apps
 
 MIDDLEWARE = [
@@ -143,4 +143,8 @@ EMAIL_HOST_USER = 'lakshaymittal0611@gmail.com'
 EMAIL_HOST_PASSWORD = 'tapx nulr lbno urjp'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
+
+
+RAZORPAY_KEY_SECRET ='Txawq13X2rCIAu93Tap4IYGR'
+RAZORPAY_KEY_ID='rzp_test_S6VqkET79rJMFG'
  

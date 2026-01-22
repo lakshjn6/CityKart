@@ -15,6 +15,11 @@ from django.utils.http import urlsafe_base64_decode
 from django.contrib import auth
 from django.core.mail import EmailMessage
 from django.http import HttpResponse
+from carts.views import _cart_id
+from carts.models import CartItem,Cart  
+from store.models import product
+from orders.models import Order,OrderProduct
+
 
 
 
@@ -59,6 +64,16 @@ def login(request):
         password=request.POST['password']   
         user=auth.authenticate(request, email=email, password=password)
         if user is not None:
+            try:
+                cart=Cart.objects.get(cart_id=_cart_id(request))
+                is_cart_item_exists=CartItem.objects.filter(cart=cart).exists()
+                if is_cart_item_exists:
+                    cart_items=CartItem.objects.filter(cart=cart)
+                    for item in cart_items:
+                        item.user=user
+                        item.save()                     
+            except:
+                pass
             auth.login(request, user)
             return redirect('home')    
         else:
@@ -90,9 +105,20 @@ def activate(request, uidb64, token):
         return redirect('register') 
     
 
+
 @login_required(login_url='login')
 def dashboard(request):
-    return render(request, 'account/dashboard.html')
+    user = request.user
+    orders = Order.objects.filter(
+        user=user,
+        is_ordered=True
+    ).order_by('-created_at')
+
+    context = {
+        'orders': orders,
+    }
+
+    return render(request, 'account/dashboard.html', context)
 
 def forgotPassword(request):
     if request.method=='POST':

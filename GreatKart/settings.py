@@ -145,7 +145,6 @@ EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
 
-
-RAZORPAY_KEY_ID='rzp_test_S6VqkET79rJMFG'
  
+
 
